@@ -1,0 +1,36 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        """
+        Do not return anything, modify head in-place instead.
+        """
+        #finding the middle of Linked List using fast and slow pointers
+        #so that we can split our list into two portions
+        slow , fast = head , head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        #second portion begins when we set it to be slow.next for both odd and even number if nodes
+        second = slow.next
+        #also middle of linked list comes at last after re-ordering so it must be set to null
+        slow.next = None
+        #now we need to reverse second half aswell before performing relinking
+        prev = None
+        while second:
+            tempVar = second.next
+            second.next = prev
+            prev = second
+            second = tempVar
+
+        #Finally merging the two portions of linked list where prev is new head of reversed linked list
+        first , second = head ,prev
+        #because we know second can be shorter portion for odd number of nodes
+        while second:
+            temp1 , temp2 = first.next , second.next
+            first.next = second
+            second.next = temp1
+            first,second = temp1 , temp2
