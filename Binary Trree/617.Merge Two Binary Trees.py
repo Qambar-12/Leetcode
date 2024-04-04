@@ -11,8 +11,8 @@ class Solution:
         elif not root2:
             return root1
         else: #t1, t2 exist
-            res = TreeNode(root1.val + root2.val) #create new treenode with summed value
-            res.left = self.mergeTrees(root1.left, root2.left)
-            res.right = self.mergeTrees(root1.right, root2.right)
-        return res
+            new_tree = TreeNode(root1.val + root2.val) #create new treenode with summed value
+            new_tree.left = self.mergeTrees(root1.left, root2.left)
+            new_tree.right = self.mergeTrees(root1.right, root2.right)
+        return new_tree
                  
