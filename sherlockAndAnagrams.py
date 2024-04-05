@@ -29,4 +29,5 @@ def sherlockAndAnagrams(s):
     #since division return float type casting back to integer
     return int(total)
 
+#testing git commit
     
